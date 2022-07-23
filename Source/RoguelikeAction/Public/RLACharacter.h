@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "RLACharacter.generated.h"
 
+class UCameraComponent;
+class USpringArmComponent;
+
 UCLASS()
 class ROGUELIKEACTION_API ARLACharacter : public ACharacter
 {
@@ -16,8 +19,17 @@ public:
 	ARLACharacter();
 
 protected:
+
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* CameraComp;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	void MoveForward(float value);
 
 public:	
 	// Called every frame
