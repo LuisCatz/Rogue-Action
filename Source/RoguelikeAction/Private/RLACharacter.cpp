@@ -32,6 +32,29 @@ void ARLACharacter::BeginPlay()
 	
 }
 
+// Called every frame
+void ARLACharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+
+// Called to bind functionality to input
+void ARLACharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	PlayerInputComponent->BindAxis("MoveForward", this, &ARLACharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ARLACharacter::MoveRight);
+
+	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+
+	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &ARLACharacter::PrimaryAttack);
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+}
+
 void ARLACharacter::MoveForward(float value)
 {
 	FRotator ControlRot = GetControlRotation();
@@ -56,22 +79,14 @@ void ARLACharacter::MoveRight(float value)
 	AddMovementInput(RightVector, value);
 }
 
-// Called every frame
-void ARLACharacter::Tick(float DeltaTime)
+void ARLACharacter::PrimaryAttack()
 {
-	Super::Tick(DeltaTime);
+	FVector HandLocation = GetMesh()->GetSocketLocation("Muzzle_02");
 
+	FTransform SpawnTM = FTransform(GetControlRotation(), HandLocation);
+	
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	GetWorld()->SpawnActor<AActor>(ProjectileClass, SpawnTM, SpawnParams);
 }
-
-// Called to bind functionality to input
-void ARLACharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	PlayerInputComponent->BindAxis("MoveForward", this, &ARLACharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ARLACharacter::MoveRight);
-
-	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-}
-

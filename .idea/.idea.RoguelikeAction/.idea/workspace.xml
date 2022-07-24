@@ -161,7 +161,10 @@
       <workItem from="1658505253408" duration="12000" />
       <workItem from="1658505309341" duration="1882000" />
       <workItem from="1658544921534" duration="4111000" />
-      <workItem from="1658588251405" duration="1315000" />
+      <workItem from="1658588251405" duration="6825000" />
+      <workItem from="1658636145096" duration="1213000" />
+      <workItem from="1658653024013" duration="1439000" />
+      <workItem from="1658654573902" duration="3691000" />
     </task>
     <servers />
   </component>
@@ -172,5 +175,16 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/RoguelikeAction/Public/RLAItemChest.h</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
